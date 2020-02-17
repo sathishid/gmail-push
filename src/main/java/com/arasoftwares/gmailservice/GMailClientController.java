@@ -13,6 +13,7 @@ public class GMailClientController {
 
     @GetMapping
     public String sayHi() {
+        System.out.println("say hi method called");
         return "Hi";
     }
 
