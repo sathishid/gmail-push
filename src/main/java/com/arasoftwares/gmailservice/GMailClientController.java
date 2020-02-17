@@ -18,6 +18,7 @@ public class GMailClientController {
 
     @PostMapping("push")
     public ResponseEntity<?> recieveMail(@RequestBody String body) {
+        System.out.println(body);
         return ResponseEntity.noContent().build();
     }
 }
