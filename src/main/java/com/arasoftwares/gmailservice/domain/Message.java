@@ -25,27 +25,27 @@ return data;
 }
 
 @JsonProperty("data")
-public void setData(String data) {
-this.data = data;
+public void setData(final String data) {
+    this.data = data;
 }
 
 @JsonProperty("messageId")
 public String getMessageId() {
-return messageId;
+    return messageId;
 }
 
 @JsonProperty("messageId")
-public void setMessageId(String messageId) {
-this.messageId = messageId;
+public void setMessageId(final String messageId) {
+    this.messageId = messageId;
 }
 
 @JsonProperty("publishTime")
 public String getPublishTime() {
-return publishTime;
+    return publishTime;
 }
 
 @JsonProperty("publishTime")
-public void setPublishTime(String publishTime) {
+public void setPublishTime(final String publishTime) {
 this.publishTime = publishTime;
 }
 
