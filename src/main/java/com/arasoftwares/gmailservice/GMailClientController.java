@@ -24,8 +24,9 @@ public class GMailClientController {
 
     @PostMapping("push")
     public ResponseEntity<?> recieveMail(@RequestBody String body) {
-        String encodedString = Base64.getEncoder().withoutPadding().encodeToString(body.getBytes());
-        System.out.println(encodedString);
+        byte[] decodedBytes = Base64.getDecoder().decode(body);
+        String decodedString = new String(decodedBytes);
+        System.out.println(decodedString);
         return ResponseEntity.noContent().build();
     }
 }
