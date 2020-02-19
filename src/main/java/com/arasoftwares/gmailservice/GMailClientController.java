@@ -1,5 +1,7 @@
 package com.arasoftwares.gmailservice;
 
+import java.util.Base64;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +24,8 @@ public class GMailClientController {
 
     @PostMapping("push")
     public ResponseEntity<?> recieveMail(@RequestBody String body) {
-        System.out.println(body);
+        String encodedString = Base64.getEncoder().withoutPadding().encodeToString(body.getBytes());
+        System.out.println(encodedString);
         return ResponseEntity.noContent().build();
     }
 }
