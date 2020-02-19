@@ -31,6 +31,5 @@ public class GMailClientController {
             System.out.println(e.getMessage());
         }
         return ResponseEntity.noContent().build();
-
     }
 }
