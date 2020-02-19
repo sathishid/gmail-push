@@ -23,6 +23,7 @@ public class GMailClientController {
 
     @PostMapping("push")
     public ResponseEntity<?> recieveMail(@RequestBody String body) {
+        System.out.println(body);
         try {
             String decodeRequest = new String(Base64.getMimeDecoder().decode(body.getBytes()));
             System.out.println(decodeRequest);
