@@ -1,5 +1,9 @@
 package com.arasoftwares.gmailservice;
 
+import java.util.Base64;
+
+import com.arasoftwares.gmailservice.domain.ResponseWrapper;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,14 +19,21 @@ public class GMailClientController {
     public String sayHi() {
         System.out.println("say hi method called");
         return "<html><head><meta name='google-site-verification' content='yOnmr52jMDmWBnHCu0oMMy-B4CqJc8bug__iKNgzYFQ' />"
-               +"<title>Gmail-Push Notification </title>"
-               +"</head><body><h1>Hello World!</h1>"
-               +"<p>Welcome to the Web App</body></html>";
+                + "<title>Gmail-Push Notification </title>" + "</head><body><h1>Hello World!</h1>"
+                + "<p>Welcome to the Web App</body></html>";
     }
 
     @PostMapping("push")
-    public ResponseEntity<?> recieveMail(@RequestBody String body) {
-        System.out.println(body);
+    public ResponseEntity<?> recieveMail(@RequestBody final ResponseWrapper responseWrapper) {
+        System.out.println(responseWrapper);
+        try {
+            final String decodeRequest = new String(
+                    Base64.getMimeDecoder().decode(responseWrapper.getMessage().getData().getBytes()));
+            System.out.println(decodeRequest);
+        } catch (final Exception e) {
+            System.out.println(e.getMessage());
+        }
         return ResponseEntity.noContent().build();
+
     }
 }
