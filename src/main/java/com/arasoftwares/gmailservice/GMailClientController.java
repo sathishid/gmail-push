@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/")
 public class GMailClientController {
@@ -24,8 +25,12 @@ public class GMailClientController {
 
     @PostMapping("push")
     public ResponseEntity<?> recieveMail(@RequestBody String body) {
-        String decodeRequest = new String(Base64.getDecoder().decode(body.getBytes()));
-        System.out.println(decodeRequest);
+         try {
+            String decodeRequest = new String(Base64.getMimeDecoder().decode(body.getBytes()));
+            System.out.println(decodeRequest);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return ResponseEntity.noContent().build();
     }
 }
